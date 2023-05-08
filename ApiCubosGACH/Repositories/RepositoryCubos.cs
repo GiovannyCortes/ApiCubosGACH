@@ -20,13 +20,13 @@ namespace ApiCubosGACH.Repositories {
             return await this.context.Cubos.Where(x => x.Marca == marca).ToListAsync();
         }
 
-        public async Task<int> InsertCubo(string nombre, string marca, string imagen) {
+        public async Task<int> InsertCubo(string nombre, string marca, string extension) {
             int newId = await this.context.Cubos.AnyAsync() ? await this.context.Cubos.MaxAsync(x => x.IdCubo) + 1 : 1;
             Cubo cubo = new Cubo {
                 IdCubo = newId,
                 Nombre = nombre,
                 Marca = marca,
-                Imagen = imagen,
+                Imagen = "cubo_pic_" + newId + extension,
                 Precio = 0
             };
 
@@ -42,14 +42,14 @@ namespace ApiCubosGACH.Repositories {
             return usuario;
         }
 
-        public async Task<int> InsertUsuario(string nombre, string email, string password, string imagen) {
+        public async Task<int> InsertUsuario(string nombre, string email, string password, string extension) {
             int newId = await this.context.Usuarios.AnyAsync() ? await this.context.Usuarios.MaxAsync(x => x.IdUsuario) + 1 : 1;
             Usuario usuario = new Usuario {
                 IdUsuario = newId,
                 Nombre = nombre,
                 Email = email,
                 Password = password,
-                Imagen = imagen
+                Imagen = "user_pic_" + newId + extension
             };
 
             this.context.Usuarios.Add(usuario);
