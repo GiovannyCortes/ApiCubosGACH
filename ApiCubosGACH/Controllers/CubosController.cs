@@ -26,7 +26,7 @@ namespace ApiCubosGACH.Controllers {
 
         [HttpPost] [Route("[action]")]
         public async Task<ActionResult<int>> InsertCubo(Cubo cubo) {
-            return await this.repo.InsertCubo(cubo.Nombre, cubo.Marca, cubo.Imagen);
+            return await this.repo.InsertCubo(cubo.Nombre, cubo.Marca, cubo.Imagen, cubo.Precio);
         } 
 
     }

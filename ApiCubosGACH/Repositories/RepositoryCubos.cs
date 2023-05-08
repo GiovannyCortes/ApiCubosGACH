@@ -20,14 +20,14 @@ namespace ApiCubosGACH.Repositories {
             return await this.context.Cubos.Where(x => x.Marca == marca).ToListAsync();
         }
 
-        public async Task<int> InsertCubo(string nombre, string marca, string extension) {
+        public async Task<int> InsertCubo(string nombre, string marca, string extension, int precio) {
             int newId = await this.context.Cubos.AnyAsync() ? await this.context.Cubos.MaxAsync(x => x.IdCubo) + 1 : 1;
             Cubo cubo = new Cubo {
                 IdCubo = newId,
                 Nombre = nombre,
                 Marca = marca,
                 Imagen = "cubo_pic_" + newId + extension,
-                Precio = 0
+                Precio = precio
             };
 
             this.context.Cubos.Add(cubo);
